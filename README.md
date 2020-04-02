@@ -55,7 +55,7 @@ To learn more about MEMs, see the elegant vignette of [Stéphane Dray](https://c
 
 Open the file containing the MEM finormation.
 ```{r}
-dbmem <- read.table("DbMEM-GPS-860ind.txt", header=TRUE)
+dbmem <- read.table("DbMEM-GPS-444ind.txt", header=TRUE)
 ```
 
 Change from wide to long format in order to be able to use `ggplot2`package on your dataset.
@@ -88,31 +88,31 @@ ggplot() +
 
 Select only MEM1 and MEM3.
 ```{r}
-dbmem_gps_long_mem13 <- subset(dbmem_gps, subset=MEM=="MEM1"| MEM=="MEM3")
+dbmem_gps_long_mem14 <- subset(dbmem_gps, subset=MEM=="MEM1"| MEM=="MEM4")
 ```
 
 ## 4. Create a ggmap for each MEMs
 Start by performing a map on the MEM 1 and MEM3.
 ```{r}
-pdf("MEM1_3_inter.pdf", width=5, height=5)
+pdf("MEM1_4_fas.pdf", width=5, height=5)
 x_title="Longitude"
 y_title="Latitude"
-graph_inter <- ggplot() +
+graph1 <- ggplot() +
   geom_polygon(data = wH, aes(x=long, y = lat, group = group), fill = "gray80", color = NA) +
   coord_fixed(xlim = c(-72,-45), ylim=c(35,70), ratio=1.2)+
   facet_wrap(~MEM)+
   theme(panel.background = element_rect(fill = "white", colour = "black"),
         axis.title = element_blank())+
-  geom_point(aes(x = Longitude, y = Latitude,fill=Average_MEM), data=dbmem_gps,shape = 21, size=1.5)+
+  geom_point(aes(x = Longitude, y = Latitude,fill=Average_MEM), data=dbmem_gps_long_mem14,shape = 21, size=1.5)+
   theme_bw()+theme(legend.position = "none",
                    panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   labs(y=y_title)+  
   labs(x=x_title)+
   theme(axis.text.x=element_text(colour="black"))+
   theme(axis.text.y=element_text(colour="black"))+
-  scale_fill_continuous(high="red",low="white")
-graph_inter
+  scale_fill_continuous(high="yellow",low="red")
+graph1
 dev.off()
 ```
 
-![MEM_1_3_860ind](MEM3_inter.pdf)
+![MEM1 and MEM4 for Sebastes fasciatus](MEM1_4_fas.pdf)
