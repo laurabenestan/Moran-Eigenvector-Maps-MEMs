@@ -12,7 +12,7 @@ ggplot2, sf, tidyr
 
 Look at sites in space by keeping only latitude and longitude and saving this in the object called Coor.
 Keep latitude and longitude in this order as for the function `gcd.hf`, latitude needs to be first. 
-```{r}
+```{r}@	
 Coor=Env[,6:5]
 Coorxy=Env[,5:6]
 ```
@@ -92,7 +92,7 @@ dbmem_gps_long_mem14 <- subset(dbmem_gps, subset=MEM=="MEM1"| MEM=="MEM4")
 ```
 
 ## 4. Create a ggmap for each MEMs
-Start by performing a map on the MEM 1 and MEM3.
+Start by performing a map on the MEM 1 and MEM4.
 ```{r}
 pdf("MEM1_4_fas.pdf", width=5, height=5)
 x_title="Longitude"
