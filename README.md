@@ -1,3 +1,8 @@
+---
+editor_options:
+chunk_output_type: console
+---
+
 # Moran's Eigenvector Maps (MEMs)
 
 Moran's eigenvectors maps (MEM) are complete and easy-to-use mathematical objects that aims to partition the spatial distribution across samples.
