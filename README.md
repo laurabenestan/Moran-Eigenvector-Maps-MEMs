@@ -115,4 +115,4 @@ graph1
 dev.off()
 ```
 
-![MEM1 and MEM4 for Sebastes fasciatus](MEM1_4_fas.pdf)
+![MEM1 and MEM4 for Sebastes fasciatus](MEMs_fas_14.png)
