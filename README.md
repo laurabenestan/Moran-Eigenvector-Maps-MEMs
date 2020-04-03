@@ -13,15 +13,15 @@ Moran's eigenvectors maps (MEM) are complete and easy-to-use mathematical object
 ### Softwares
 
 - [R Version 3.6.0](https://cran.r-project.org/)
-	* R packages: codep, adespatial, adegraphics, vegan,car,dplyr, data.table
+	* R packages: codep, adespatial, adegraphics, vegan, car, dplyr, data.table
 ggplot2, sf, tidyr
 
 ## 1. Create Moran Eigenvector's Maps (MEMs) to be the spatial variables
 
 Prepare a file containing in each column:
-(i) the individual labels
-(ii) the latitude 
-(iii) longitude information.
+1. the individual labels
+2. the latitude 
+3. longitude information.
 
 Download this file in your R environment.
 
@@ -32,7 +32,7 @@ geo <- read.table("geographic_coordinates_fasciatus.txt",header=TRUE)
 Keep latitude and longitude in this order as for the function `gcd.hf`, latitude needs to be first. 
 ```{r}
 Coor=geo[,2:3]
-Coorxy=Env[,3:2]
+Coorxy=geo,3:2]
 ```
 
 Look the spatial distribution 
@@ -52,7 +52,7 @@ DistSpatial=gcd.hf(Coor)
 dbmem = dbmem(DistSpatial)
 ```
 
-Look at general output. With this treashold, we get 19 MEMs.
+Look at general output, we get 12 MEMs.
 ```{r}
 summary(dbmem)
 ```
@@ -62,18 +62,21 @@ Specify where to find the function to be sure of the function version to use in 
 adegraphics::s.label(Coor, nb = attr(dbmem, "listw"))
 ```
 
-Visualising the 19 MEMs by using the Coorxy object. 
-The 1rst dbmems are large spatial scales, the last dbmems are small spatial scales. 
-dbmem can be used in stats like any other env variables.
+![Spatial links](Link.png)
+
+Visualising the 12 MEMs by using the Coorxy object. 
+The 1rst MEMs represent large spatial scales while the last MEMs are small spatial scales. 
+MEMs can be used in stats like any other environmental variables.
 ```{r}
 ade4::s.value(Coorxy, dbmem[,1])
 ```
+![MEM1](MEM1.png)
 
 To learn more about MEMs, see the elegant vignette of [Stéphane Dray](https://cran.r-project.org/web/packages/adespatial/vignettes/tutorial.html)
 
-## 2. Analyse db-MEM values
+## 2. Visualize the MEM values
 
-Open the file containing the MEM finormation.
+Open the file containing the MEM values (that you have previously saved).
 ```{r}
 dbmem <- read.table("DbMEM-GPS-444ind.txt", header=TRUE)
 ```
@@ -83,7 +86,7 @@ Change from wide to long format in order to be able to use `ggplot2`package on y
 dbmem_gps_long <- gather(dbmem, MEM, Value, MEM1:ncol(dbmem))
 ```
 
-Calculate an average value for each GPS point.
+Calculate an MEM average value for each GPS point.
 ```{r}
 dbmem_gps <- dbmem_gps_long %>% group_by(Latitude, Longitude, MEM)%>%
   summarise(mem_mean <- mean(Value))
@@ -112,7 +115,8 @@ dbmem_gps_long_mem14 <- subset(dbmem_gps, subset=MEM=="MEM1"| MEM=="MEM4")
 ```
 
 ## 4. Create a ggmap for each MEMs
-Start by performing a map on the MEM 1 and MEM4.
+
+Create a map showing only the MEM 1 and MEM4 (that were found to be teh most significant spatial factors in our case).
 ```{r}
 pdf("MEM1_4_fas.pdf", width=5, height=5)
 x_title="Longitude"
