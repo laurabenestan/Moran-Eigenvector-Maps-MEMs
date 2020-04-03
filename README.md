@@ -66,7 +66,7 @@ To learn more about MEMs, see the elegant vignette of [Stéphane Dray](https://c
 
 ## 2. Visualize the MEM values
 
-MEMs can be used in stats like any other environmental variables for instance in a Redundancy Analysis (RDA)framework, see [Benestan et al 2016] (https://onlinelibrary.wiley.com/doi/abs/10.1111/mec.13811).
+MEMs can be used in stats like any other environmental variables for instance in a Redundancy Analysis (RDA)framework, see [Benestan et al 2016](https://onlinelibrary.wiley.com/doi/abs/10.1111/mec.13811).
 Visualising the 12 MEMs is a crucial steps for accurately interpreting your results. 
 
 Keep in mind that the 1rst MEMs represent large spatial scales while the last MEMs are small spatial scales. 
