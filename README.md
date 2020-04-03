@@ -10,17 +10,25 @@ ggplot2, sf, tidyr
 
 ## 1. Create Moran Eigenvector's Maps (MEMs) to be the spatial variables
 
+Prepare a file containing in each column (i) the individual labels, (ii) the latitude and (iii) longitude information.
+Download this file in your R environment.
+```{r}
+geo <- read.table("geographic_coordinates_fasciatus.txt",header=TRUE)
+```
+
 Look at sites in space by keeping only latitude and longitude and saving this in the object called Coor.
 Keep latitude and longitude in this order as for the function `gcd.hf`, latitude needs to be first. 
-```{r}@	
-Coor=Env[,6:5]
-Coorxy=Env[,5:6]
+```{r}
+Coor=geo[,2:3]
+Coorxy=Env[,3:2]
 ```
 
 Look the spatial distribution 
 ```{r}
 plot(Coor, asp=1)
 ```
+
+![Spatial coordinates](plot_coor.png)
 
 Compute spatial distances among sites accounting for the earth curvature.
 ```{r}
