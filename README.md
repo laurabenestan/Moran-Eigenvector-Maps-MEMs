@@ -1,7 +1,10 @@
----
-editor_options:
-chunk_output_type: console
----
+_______________________________________________________________________________
+
+#### Laura Benestan
+
+Montpellier 3 April 2020
+
+_______________________________________________________________________________
 
 # Moran's Eigenvector Maps (MEMs)
 
