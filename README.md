@@ -62,17 +62,19 @@ adegraphics::s.label(Coor, nb = attr(dbmem, "listw"))
 
 ![Spatial links](Link.png)
 
-Visualising the 12 MEMs by using the Coorxy object. 
-The 1rst MEMs represent large spatial scales while the last MEMs are small spatial scales. 
-MEMs can be used in stats like any other environmental variables.
+To learn more about MEMs, see the elegant vignette of [Stéphane Dray](https://cran.r-project.org/web/packages/adespatial/vignettes/tutorial.html)
+
+## 2. Visualize the MEM values
+
+MEMs can be used in stats like any other environmental variables for instance in a Redundancy Analysis (RDA)framework, see [Benestan et al 2016] (https://onlinelibrary.wiley.com/doi/abs/10.1111/mec.13811).
+Visualising the 12 MEMs is a crucial steps for accurately interpreting your results. 
+
+Keep in mind that the 1rst MEMs represent large spatial scales while the last MEMs are small spatial scales. 
+
 ```{r}
 ade4::s.value(Coorxy, dbmem[,1])
 ```
 ![MEM1](MEM1.png)
-
-To learn more about MEMs, see the elegant vignette of [Stéphane Dray](https://cran.r-project.org/web/packages/adespatial/vignettes/tutorial.html)
-
-## 2. Visualize the MEM values
 
 Open the file containing the MEM values (that you have previously saved).
 ```{r}
@@ -93,7 +95,7 @@ dbmem_wide <- spread(dbmem_gps, MEM, Average_MEM)
 write.table(dbmem_wide, "Mean_MEM_28GPS_fasciatus.txt", quote=FALSE, sep="\t",row.names=FALSE)
 ```
 
-## 3. Create a map with `sf` package
+## 3. Download a high resolution map with the `sf` package
 ```{r}
 wH <- map_data("worldHires",  xlim=c(-100,100), ylim=c(20,100)) # subset polygons 
 ```
@@ -112,7 +114,7 @@ Select only MEM1 and MEM3.
 dbmem_gps_long_mem14 <- subset(dbmem_gps, subset=MEM=="MEM1"| MEM=="MEM4")
 ```
 
-## 4. Create a ggmap for each MEMs
+## 4. Create a ggmap showing the most significant MEMs vectors
 
 Create a map showing only the MEM 1 and MEM4 (that were found to be teh most significant spatial factors in our case).
 ```{r}
